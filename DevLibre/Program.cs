@@ -12,7 +12,14 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
 
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSingleton<IConfigService, ConfigService>();
+// Singleton service se mantém o mesmo valor durante toda a execução da aplicação
+// builder.Services.AddSingleton<IConfigService, ConfigService>();
+
+// Scoped service é criado uma nova instância a cada requisição
+builder.Services.AddScoped<IConfigService, ConfigService>();
+
+// Transient service é criado uma nova instância a cada injeção
+// builder.Services.AddTransient<IConfigService, ConfigService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
