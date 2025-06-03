@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DevLibre.Models;
+using DevLibre.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -13,9 +14,11 @@ namespace DevLibre.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController(IOptions<FreelanceTotalCostConfig> options)
+        private readonly IConfigService _configService;
+        public ProjectsController(IOptions<FreelanceTotalCostConfig> options, IConfigService configService)
         {
             _config = options.Value;
+            _configService = configService; // Example usage of the config service
         }
 
         // GET: api/projects
@@ -35,10 +38,10 @@ namespace DevLibre.Controllers
 
         // GET: api/projects?search={query}
         [HttpGet("search")]
-        public IActionResult GetByCrm([FromQuery] string query)
+        public IActionResult GetByCrm([FromQuery] string query = "")
         {
-            // Logic to search projects
-            return Ok(new List<string> { "Project1", "Project2" });
+            
+            return Ok(_configService.GetValue());
         }
 
         [HttpPost]

@@ -34,3 +34,4 @@ A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\refint\DevLibre.dll
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.pdb
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.genruntimeconfig.cache
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\ref\DevLibre.dll
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.sourcelink.json

@@ -1,5 +1,6 @@
 
 using DevLibre.Models;
+using DevLibre.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
     );
 
 builder.Services.AddProblemDetails();
+
+builder.Services.AddSingleton<IConfigService, ConfigService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
