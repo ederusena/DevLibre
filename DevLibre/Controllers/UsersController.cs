@@ -31,6 +31,17 @@ namespace DevLibre.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = 1 }, user);
         }
 
+        [HttpPut("{id}/profile-picture")]
+        public IActionResult UploadProfilePicture(int id, IFormFile picture)
+        {
+            var description = $"Profile: {id}, File: {picture.FileName}, Size: {picture.Length} bytes";
+
+            // Logic to upload profile picture
+            // For example, save the file to a server or cloud storage
+            // Here we just return a description of the uploaded file
+            return Ok(description);
+        }
+
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, [FromBody] string user)
         {
