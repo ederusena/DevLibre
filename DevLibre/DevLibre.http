@@ -1,0 +1,6 @@
+@DevLibre_HostAddress = http://localhost:5241
+
+GET {{DevLibre_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
