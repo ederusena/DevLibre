@@ -57,12 +57,12 @@ namespace DevLibre.Controllers
 
         // POST : api/projects/{id}/comments
         [HttpPost("{id}/comments")]
-        public IActionResult PostComment(int id, CreateProjectCommentInputModel comment)
+        public IActionResult CreateComment(int id, CreateProjectCommentInputModel comment)
         {
             return Ok();
         }
 
-        // POST : api/projects/{id}
+        // PUT : api/projects/{id}
         [HttpPut("{id}")]
         public IActionResult Update(int id, UpdateProjectInputModel model)
         {

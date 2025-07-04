@@ -1,4 +1,5 @@
 
+using DevLibre.ExceptionHandler;
 using DevLibre.Models;
 using DevLibre.Services;
 
@@ -13,10 +14,13 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
 builder.Services.AddProblemDetails();
 
 // Singleton service se mantém o mesmo valor durante toda a execução da aplicação
-// builder.Services.AddSingleton<IConfigService, ConfigService>();
+builder.Services.AddSingleton<IConfigService, ConfigService>();
+
+// Add custom exception handler
+builder.Services.AddExceptionHandler<ApiExceptionHandle>();
 
 // Scoped service é criado uma nova instância a cada requisição
-builder.Services.AddScoped<IConfigService, ConfigService>();
+// builder.Services.AddScoped<IConfigService, ConfigService>();
 
 // Transient service é criado uma nova instância a cada injeção
 // builder.Services.AddTransient<IConfigService, ConfigService>();

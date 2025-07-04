@@ -22,12 +22,6 @@ A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\scopedcss\bundle\DevLibre.sty
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.build.json
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.development.json
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets\msbuild.DevLibre.Microsoft.AspNetCore.StaticWebAssets.props
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets\msbuild.DevLibre.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets\msbuild.build.DevLibre.props
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.DevLibre.props
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.DevLibre.props
-A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.pack.json
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.csproj.Up2Date
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.dll
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\refint\DevLibre.dll
@@ -35,3 +29,9 @@ A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.pdb
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.genruntimeconfig.cache
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\ref\DevLibre.dll
 A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\DevLibre.sourcelink.json
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\rpswa.dswa.cache.json
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\rjimswa.dswa.cache.json
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.build.json.cache
+A:\Mentoria Net\DevLibre\DevLibre\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

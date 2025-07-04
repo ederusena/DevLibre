@@ -1,0 +1,8 @@
+/.vs
+/DevLibre/obj
+.vs
+DevLibre/obj
+.DevLibre/bin/
+./DevLibre/bin/
+DevLibre/bin/
+DevLibre/obj/*
