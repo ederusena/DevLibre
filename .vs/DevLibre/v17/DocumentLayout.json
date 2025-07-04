@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "A:\\Mentoria Net\\DevLibre\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{957644A0-BD32-4596-88E9-60E607D10151}|DevLibre\\DevLibre.csproj|a:\\mentoria net\\devlibre\\devlibre\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{957644A0-BD32-4596-88E9-60E607D10151}|DevLibre\\DevLibre.csproj|solutionrelative:devlibre\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -28,6 +29,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{957644A0-BD32-4596-88E9-60E607D10151}|DevLibre\\DevLibre.csproj|a:\\mentoria net\\devlibre\\devlibre\\services\\iconfigservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{957644A0-BD32-4596-88E9-60E607D10151}|DevLibre\\DevLibre.csproj|solutionrelative:devlibre\\services\\iconfigservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\Mentoria Net\\DevLibre\\DevLibre\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DevLibre\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\Mentoria Net\\DevLibre\\DevLibre\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DevLibre\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\Mentoria Net\\DevLibre\\DevLibre\\Services\\IConfigService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DevLibre\\Services\\IConfigService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
     }
   ],
   "DocumentGroupContainers": [
@@ -37,6 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -92,6 +106,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+=======
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
               "Title": "appsettings.json",
               "DocumentMoniker": "A:\\Mentoria Net\\DevLibre\\DevLibre\\appsettings.json",
               "RelativeDocumentMoniker": "DevLibre\\appsettings.json",
@@ -104,20 +125,32 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 3,
+=======
+              "DocumentIndex": 1,
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
               "Title": "Program.cs",
               "DocumentMoniker": "A:\\Mentoria Net\\DevLibre\\DevLibre\\Program.cs",
               "RelativeDocumentMoniker": "DevLibre\\Program.cs",
               "ToolTip": "A:\\Mentoria Net\\DevLibre\\DevLibre\\Program.cs",
               "RelativeToolTip": "DevLibre\\Program.cs",
+<<<<<<< HEAD
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-04T16:35:15.984Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 6,
+=======
+              "DocumentIndex": 2,
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
               "Title": "IConfigService.cs",
               "DocumentMoniker": "A:\\Mentoria Net\\DevLibre\\DevLibre\\Services\\IConfigService.cs",
               "RelativeDocumentMoniker": "DevLibre\\Services\\IConfigService.cs",
@@ -125,7 +158,12 @@
               "RelativeToolTip": "DevLibre\\Services\\IConfigService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< HEAD
               "WhenOpened": "2025-07-04T16:35:10.352Z"
+=======
+              "WhenOpened": "2025-07-04T16:35:10.352Z",
+              "EditorCaption": ""
+>>>>>>> 0446d5d131f3c726b0164c1486236b6760f84d13
             }
           ]
         }
