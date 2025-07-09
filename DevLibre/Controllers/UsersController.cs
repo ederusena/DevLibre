@@ -1,8 +1,12 @@
+using DevLibre.Entities;
+using DevLibre.Models;
+using DevLibre.Persistance;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DevLibre.Controllers
 {
@@ -10,59 +14,61 @@ namespace DevLibre.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetUsers()
+        private readonly DevLivreDbContext _context;
+        public UsersController(DevLivreDbContext context)
         {
-            // Logic to get users
-            return Ok(new List<string> { "User1", "User2" });
+            _context = context;
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+        public IActionResult GetById(int id)
         {
-            // Logic to get user by id
-            return Ok($"User{id}");
+            var user = _context.Users
+                .Include(u => u.Skills)
+                    .ThenInclude(u => u.Skill)
+                .SingleOrDefault(u => u.Id == id);
+
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            var model = UserViewModel.FromEntity(user);
+
+            return Ok(model);
         }
 
+        // POST api/users
         [HttpPost]
-        public IActionResult CreateUser([FromBody] string user)
+        public IActionResult Post(CreateUserInputModel model)
         {
-            // Logic to create a user
-            return CreatedAtAction(nameof(GetUserById), new { id = 1 }, user);
+            var user = new User(model.FullName, model.Email, model.BirthDate);
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return Ok(user);
+        }
+
+        [HttpPost("{id}/skills")]
+        public IActionResult PostSkills(int id, UserSkillsInputModel model)
+        {
+            var userSkills = model.SkillIds.Select(s => new UserSkill(id, s)).ToList();
+
+            _context.UserSkills.AddRange(userSkills);
+            _context.SaveChanges();
+
+            return NoContent();
         }
 
         [HttpPut("{id}/profile-picture")]
-        public IActionResult UploadProfilePicture(int id, IFormFile picture)
+        public IActionResult PostProfilePicture(int id, IFormFile file)
         {
-            var description = $"Profile: {id}, File: {picture.FileName}, Size: {picture.Length} bytes";
+            var description = $"FIle: {file.FileName}, Size: {file.Length}";
 
-            // Logic to upload profile picture
-            // For example, save the file to a server or cloud storage
-            // Here we just return a description of the uploaded file
+            // Processar a imagem
+
             return Ok(description);
         }
-
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] string user)
-        {
-            // Logic to update a user
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
-        {
-            // Logic to delete a user
-            return NoContent();
-        }
-
-        [HttpGet("search")]
-        public IActionResult SearchUsers([FromQuery] string query)
-        {
-            // Logic to search users
-            return Ok(new List<string> { "User1", "User2" });
-        }
-
-        
     }
 }

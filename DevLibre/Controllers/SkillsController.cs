@@ -1,8 +1,11 @@
+using DevLibre.Entities;
+using DevLibre.Models;
+using DevLibre.Persistance;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DevLibre.Controllers
 {
@@ -10,35 +13,30 @@ namespace DevLibre.Controllers
     [Route("api/skills")]
     public class SkillsController : ControllerBase
     {
-        // GET: api/skills
+        private readonly DevLivreDbContext _context;
+        public SkillsController(DevLivreDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET api/skills
         [HttpGet]
-        public IActionResult GetSkills()
+        public IActionResult GetAll()
         {
-            // Logic to get skills
-            return Ok(new List<string> { "Skill1", "Skill2" });
+            var skills = _context.Skills.ToList();
+
+            return Ok(skills);
         }
 
-        // POST: api/skills
+        // POST api/skills
         [HttpPost]
-        public IActionResult CreateSkill([FromBody] string skill)
+        public IActionResult Post(CreateSkillInputModel model)
         {
-            // Logic to create a skill
-            return CreatedAtAction(nameof(GetSkills), new { id = 1 }, skill);
-        }
+            var skill = new Skill(model.Description);
 
-        // PUT: api/skills/{id}
-        [HttpPut("{id}")]
-        public IActionResult UpdateSkill(int id, [FromBody] string skill)
-        {
-            // Logic to update a skill
-            return NoContent();
-        }
+            _context.Skills.Add(skill);
+            _context.SaveChanges();
 
-        // DELETE: api/skills/{id}
-        [HttpDelete("{id}")]
-        public IActionResult DeleteSkill(int id)
-        {
-            // Logic to delete a skill
             return NoContent();
         }
     }

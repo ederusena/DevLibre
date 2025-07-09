@@ -1,11 +1,14 @@
+using DevLibre.Entities;
+using DevLibre.Models;
+using DevLibre.Persistance;
+using DevLibre.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DevLibre.Models;
-using DevLibre.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace DevLibre.Controllers
 {
@@ -13,86 +16,160 @@ namespace DevLibre.Controllers
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
-        private readonly FreelanceTotalCostConfig _config;
-        private readonly IConfigService _configService;
-        public ProjectsController(IOptions<FreelanceTotalCostConfig> options, IConfigService configService)
+        private readonly DevLivreDbContext _context;
+        public ProjectsController(DevLivreDbContext context)
         {
-            _config = options.Value;
-            _configService = configService; // Example usage of the config service
+            _context = context;
         }
 
-        // GET: api/projects
+        // GET api/projects?search=crm
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string search = "", int page = 0, int size = 3)
         {
-            return Ok(new List<string> { "Project1", "Project2" });
+            var query = _context.Projects
+                .Include(p => p.Client)
+                .Include(p => p.Freelancer)
+                .Where(p => !p.IsDeleted && (string.IsNullOrEmpty(search) || p.Title.Contains(search) || p.Description.Contains(search)));
+
+            var totalCount = query.Count();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)size);
+
+            var projects = query
+                .Skip(page * size)
+                .Take(size)
+                .ToList();
+
+            var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
+
+            var response = new
+            {
+                page,
+                size,
+                totalCount,
+                totalPages,
+                items = model
+            };
+
+            return Ok(response);
         }
 
-        // GET: api/projects/{id}
+        // GET api/projects/1234
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            // Logic to get project by id
-            return Ok($"Project{id}");
+            var project = _context.Projects
+                .Include(p => p.Client)
+                .Include(p => p.Freelancer)
+                .Include(p => p.Comments)
+                .SingleOrDefault(p => p.Id == id);
+
+            var model = ProjectViewModel.FromEntity(project);
+
+            return Ok(model);
         }
 
-        // GET: api/projects?search={query}
-        [HttpGet("search")]
-        public IActionResult GetByCrm([FromQuery] string query = "")
-        {
-            
-            return Ok(_configService.GetValue());
-        }
-
+        // POST api/projects
         [HttpPost]
-        public IActionResult CreateProject(CreateProjectInputModel model)
+        public IActionResult Post(CreateProjectInputModel model)
         {
-            if (model.TotalCost < _config.Minimum || model.TotalCost > _config.Maximum)
-            {
-                return BadRequest("Numero fora dos limites.");
-            }
+            var project = model.ToEntity();
+
+            _context.Projects.Add(project);
+            _context.SaveChanges();
 
             return CreatedAtAction(nameof(GetById), new { id = 1 }, model);
         }
 
-        // POST : api/projects/{id}/comments
-        [HttpPost("{id}/comments")]
-        public IActionResult CreateComment(int id, CreateProjectCommentInputModel comment)
-        {
-            return Ok();
-        }
-
-        // PUT : api/projects/{id}
+        // PUT api/projects/1234
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdateProjectInputModel model)
+        public IActionResult Put(int id, UpdateProjectInputModel model)
         {
+            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project is null)
+            {
+                return NotFound();
+            }
+
+            project.Update(model.Title, model.Description, model.TotalCost);
+
+            _context.Projects.Update(project);
+            _context.SaveChanges();
+
             return NoContent();
         }
 
-        // PUT: api/projects/{id}/start
-        [HttpPut("{id}/start")]
-        public IActionResult Start(int id)
-        {
-            return NoContent();
-        }
-
-        // PUT: api/projects/{id}/complete
-        [HttpPut("{id}/complete")]
-        public IActionResult Complete(int id)
-        {
-            return NoContent();
-        }
-
-        // DELETE: api/projects/{id}
+        //  DELETE api/projects/1234
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project is null)
+            {
+                return NotFound();
+            }
+
+            project.SetAsDeleted();
+            _context.Projects.Update(project);
+            _context.SaveChanges();
+
             return NoContent();
         }
 
+        // PUT api/projects/1234/start
+        [HttpPut("{id}/start")]
+        public IActionResult Start(int id)
+        {
+            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
 
+            if (project is null)
+            {
+                return NotFound();
+            }
 
+            project.Start();
+            _context.Projects.Update(project);
+            _context.SaveChanges();
 
+            return NoContent();
+        }
 
+        // PUT api/projects/1234/complete
+        [HttpPut("{id}/complete")]
+        public IActionResult Complete(int id)
+        {
+            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project is null)
+            {
+                return NotFound();
+            }
+
+            project.Complete();
+            _context.Projects.Update(project);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        // POST api/projects/1234/comments
+        [HttpPost("{id}/comments")]
+        public IActionResult PostComment(int id, CreateProjectCommentInputModel model)
+        {
+            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project is null)
+            {
+                return NotFound();
+            }
+
+            var comment = new ProjectComment(model.Content, model.IdProject, model.IdUser);
+
+            _context.ProjectComments.Add(comment);
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using DevLibre.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace DevLibre.Models
         public int IdClient { get; set; }
         public int IdFreelancer { get; set; }
         public decimal TotalCost { get; set; }
+
+        public Project ToEntity()
+            => new(Title, Description, IdClient, IdFreelancer, TotalCost);
     }
 }

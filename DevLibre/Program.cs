@@ -1,7 +1,9 @@
 
 using DevLibre.ExceptionHandler;
 using DevLibre.Models;
+using DevLibre.Persistance;
 using DevLibre.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,13 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
     );
 
 builder.Services.AddProblemDetails();
+
+// Inmemory Database
+// builder.Services.AddDbContext<DevLivreDbContext>(o => o.UseInMemoryDatabase("DevFreelaDb"));
+
+// SQL Server Database
+builder.Services.AddDbContext<DevLivreDbContext>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString("DevFreelaDb")));
 
 // Singleton service se mantém o mesmo valor durante toda a execução da aplicação
 builder.Services.AddSingleton<IConfigService, ConfigService>();

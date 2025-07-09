@@ -2,16 +2,19 @@
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        protected BaseEntity()
+        {
+            CreatedAt = DateTime.Now;
+            IsDeleted = false;
+        }
+
+        public int Id { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public bool IsDeleted { get; private set; }
 
-        public void SetAsDeleted() => IsDeleted = true;
-
-        public BaseEntity()
+        public void SetAsDeleted()
         {
-            CreatedAt = DateTime.UtcNow;
-            IsDeleted = false;
+            IsDeleted = true;
         }
 
     }

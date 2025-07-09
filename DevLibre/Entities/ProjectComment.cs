@@ -7,11 +7,11 @@
         public int IdUser { get; private set; }
         public User User { get; private set; }
         public string Content { get; private set; }
-        public ProjectComment(int idProject, int idUser, string comment)
+        public ProjectComment(string content, int idProject, int idUser)
         {
             IdProject = idProject;
             IdUser = idUser;
-            Content = comment;
+            Content = content;
         }
     }
 }

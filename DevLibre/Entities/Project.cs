@@ -1,4 +1,5 @@
 ﻿using DevLibre.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevLibre.Entities
 {
@@ -22,6 +23,7 @@ namespace DevLibre.Entities
         public User Client { get; private set; }
         public int IdFreelancer { get; private set; }
         public User Freelancer { get; private set; }
+        [Precision(18,2)]
         public decimal TotalCost { get; private set; }
         public DateTime? StartedAt { get; private set; }
         public DateTime? CompletedAt { get; private set; }
@@ -58,7 +60,7 @@ namespace DevLibre.Entities
                 Status = ProjectStatusEnum.PaymentPending;
         }
 
-        public void UpdateDetails(string title, string description, decimal totalCost)
+        public void Update(string title, string description, decimal totalCost)
         {
             Title = title;
             Description = description;
